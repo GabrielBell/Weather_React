@@ -7,6 +7,10 @@ var Weather= require('Weather');
 var About= require('About');
 var Examples= require('Examples');
 
+//Load Foundation
+require('style!css!foundation-sites/dist/foundation.min.css')
+$(document).foundation();
+
 //GreeterForm is a presentational component. it relies on container component
 // to change state. 
 
