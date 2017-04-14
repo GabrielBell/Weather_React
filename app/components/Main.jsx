@@ -6,8 +6,7 @@ var Nav= require('Nav');
 
 
 var Main = (props) => {
-	return(
-			
+	return(			
 				<div>
 					<Nav/>
 					<h2>Main Component</h2>
