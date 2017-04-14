@@ -10,6 +10,9 @@ var Examples= require('Examples');
 //Load Foundation
 require('style!css!foundation-sites/dist/foundation.min.css')
 $(document).foundation();
+//Load Custom styles
+require('style!css!applicationStyles')
+
 
 //GreeterForm is a presentational component. it relies on container component
 // to change state. 
