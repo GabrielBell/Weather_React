@@ -1,10 +1,17 @@
 var express= require('express');
 var app= express();
 
-var port= process.env.PORT || 8080;
-
+const PORT= process.env.PORT || 8080;
+//add fix for weatherMap API call. redirect any https to http
+app.use(function(req,res,next){
+	if(req.headers['x-forwarded-proto']==='http'){
+		next();
+	}else{
+		res.redirect('http://' + req.hostname + req.url)
+	}
+})
 app.use(express.static('public'));
 
-app.listen(port, function(req,res){
-	console.log('Server up and listening to port: ', port);
+app.listen(PORT, function(req,res){
+	console.log('Server up and listening to port: ', PORT);
 })
