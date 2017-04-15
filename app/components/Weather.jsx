@@ -15,7 +15,9 @@ var Weather = React.createClass({
 
     this.setState({
       isLoading: true,
-      errorMessage: undefined
+      errorMessage: undefined,
+      location: undefined,
+      temp: undefined
     });
 
     openWeatherMap.getTemp(location).then(function (temp) {
@@ -30,6 +32,27 @@ var Weather = React.createClass({
         errorMessage: e.message
       });
     });
+  },
+  /*runs immediately after component is mounted to DOM. from DOC:
+    Initialization of DOM nodes should go here. also a good time to invoke call to remote
+    endpoint. Setting state in this method will trigger re-rendering. 
+  */
+  componentDidMount: function(){
+    //pull the property location from url 
+    var location = this.props.location.query.location;
+    if(location && location.length > 0){
+      this.handleSearch(location);
+      window.location.hash = '#/';
+    }
+
+  },
+  //called anytime the components props are updated
+  componentWillReceiveProps: function(newProps) {
+    var location = newProps.location.query.location;
+    if(location && location.length > 0){
+      this.handleSearch(location);
+      window.location.hash = '#/';
+    }
   },
   render: function () {
     var {isLoading, temp, location, errorMessage} = this.state;
